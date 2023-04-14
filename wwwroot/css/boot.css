@@ -1,0 +1,16 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+body {
+
+}
+.container {
+    background: #FFF;
+
+}
+h1, h2, h3 {
+    color: #4F85D7;
+}

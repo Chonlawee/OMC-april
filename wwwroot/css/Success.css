@@ -1,0 +1,78 @@
+﻿
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+body {
+    background-color: #EDD5C3;
+}
+.container {
+    margin-top: 50px;
+    text-align: center;
+    background-color: #FAF4F4;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+    .container h1 {
+        font-size:36px;
+    }
+    .container p {
+        font-size: 24px;
+    }
+.success {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.checkmark {
+    width: 104px;
+    height: 104px;
+    stroke-width: 2;
+    stroke: #1abc9c;
+    stroke-miterlimit: 10;
+    margin:1.5rem;
+    animation: draw-checkmark 0.5s ease-in-out 0.5s forwards;
+   
+}
+
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: draw-circle 0.5s ease-in-out forwards;
+}
+
+.checkmark__check {
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: draw-check 0.5s ease-in-out 0.75s forwards;
+}
+
+
+
+@keyframes draw-circle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes draw-checkmark {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes draw-check {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+

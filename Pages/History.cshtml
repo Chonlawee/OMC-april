@@ -1,0 +1,78 @@
+﻿@page
+@model OMC.Pages.HistoryModel
+@{
+}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>หน้าหลัก</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lux.css" />
+    <link rel="stylesheet" href="~/css/History.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap" rel="stylesheet">
+</head>
+
+
+
+<body>
+    <div class=container>
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        วันที่สั่งเครื่องดื่ม
+                    </th>
+                    <th>
+                        ชื่อเครื่องดื่ม
+                    </th>
+
+                    <th>
+                        จำนวณแก้ว
+                    </th>
+                    <th>
+                        ราคาเครื่องดื่ม
+                    </th>
+
+
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Order )
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Created)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.ProductName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cup_Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Total)
+                        </td>
+
+
+
+
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

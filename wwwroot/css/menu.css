@@ -1,0 +1,48 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+body {
+
+}
+
+.container {
+   
+    
+}
+
+h1, h2, h3 {
+    color: #4F85D7;
+}
+
+.promotionmenu {
+    margin-top:50px;
+    border-radius: 10px;
+    background: #FACDAD;
+    padding-left: 10px;
+   
+    width: 100%;
+    
+}
+
+.scrollmenu {
+    background-color: #5f4339;
+    overflow: auto;
+    white-space: nowrap;
+    text-align: center;
+}
+
+    .scrollmenu a {
+        display: inline-block;
+        color: black;
+        padding: 14px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+        .scrollmenu a:hover {
+            background-color: #be9c91
+        }
+

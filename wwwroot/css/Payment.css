@@ -1,0 +1,61 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+.container {
+    margin-top: 50px;
+    text-align: center;
+}
+    .container h1 {
+        font-size:36px;
+    }
+    .container p {
+        font-size: 24px;
+    }
+    /* Style the checkmark container */
+    .checkmark-container {
+    display: inline-block;
+    position: relative;
+    width: 36px;
+    height: 36px;
+}
+
+/* Style the checkmark stem */
+.checkmark-stem {
+    position: absolute;
+    width: 2px;
+    height: 14px;
+    background-color: #1E90FF;
+    left: 11px;
+    top: 10px;
+    transform: rotate(45deg);
+}
+
+/* Style the checkmark kick */
+.checkmark-kick {
+    position: absolute;
+    width: 2px;
+    height: 6px;
+    background-color: #1E90FF;
+    left: 11px;
+    top: 22px;
+    transform: rotate(-45deg);
+    animation: checkmark-kick-animation 0.3s ease-in-out;
+}
+
+/* Define the keyframe animation */
+@keyframes checkmark-kick-animation {
+    0% {
+        transform: rotate(-45deg) scale(0);
+    }
+
+    50% {
+        transform: rotate(-45deg) scale(1.2);
+    }
+
+    100% {
+        transform: rotate(-45deg) scale(1);
+    }
+}

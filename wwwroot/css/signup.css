@@ -1,0 +1,23 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+
+.card {
+}
+
+.location {
+    visibility: hidden;
+}
+
+.btn-outline-dark {
+    background-color: #95573A;
+    color: #fff;
+}
+
+.btn-hover-dark {
+    color: #fff;
+    background-color: #7C5645;
+}

@@ -1,0 +1,36 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+body {
+    background-color: #EDD5C3;
+}
+.emp-profile {
+    border-radius: 0.5rem;
+    background-color: #FAF4F4;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.profile-img {
+    text-align: center;
+}
+
+    .profile-img img {
+        width: 70%;
+        height: 100%;
+    }
+
+
+
+        .profile-img .file input {
+            position: absolute;
+            opacity: 0;
+            right: 0;
+            top: 0;
+        }
+
+
+

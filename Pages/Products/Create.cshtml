@@ -1,0 +1,51 @@
+﻿@page
+@model OMC.Pages.Products.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Product.ProductName" class="control-label"></label>
+                <input asp-for="Product.ProductName" class="form-control" />
+                <span asp-validation-for="Product.ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.ProductPrice" class="control-label"></label>
+                <input asp-for="Product.ProductPrice" class="form-control" />
+                <span asp-validation-for="Product.ProductPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.ImgFile" class="control-label"></label>
+                <input tpye="file"asp-for="Product.ImgFile" class="form-control" />
+                <span asp-validation-for="Product.ImgFile" class="text-danger"></span>
+            </div>
+            <select class="form-select" id="productType" asp-for="Product.ProductType" aria-label="Default select example">
+                <option selected>Product Type</option>
+                <option value="กาแฟ">กาแฟ</option>
+                <option value="ชาไทย">ชาไทย</option>
+                <option value="ชาเขียว">ชาเขียว</option>
+            </select>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

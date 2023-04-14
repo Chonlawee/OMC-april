@@ -1,0 +1,62 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+
+body {
+    background-color: #EDD5C3;
+}
+.container {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    background-color: #FAF4F4;
+    border-radius:12px;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    
+}
+
+    .image img {
+        max-height :70%;
+        max-width: 70%;
+        margin-bottom: 30px;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+.Ordername {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+    .Ordername h3 {
+        font-size: 4rem;
+    }
+
+.Flavor {
+    font-size: 24px;
+    
+}
+
+.form-check {
+    font-size: 24px;
+}
+.lightLabel {
+    font-weight: 300;
+}
+.custom-checkbox {
+    width: 25px;
+    height: 25px;
+}

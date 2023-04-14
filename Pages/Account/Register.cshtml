@@ -1,0 +1,64 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form </title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lux.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container py-3 h-auto">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card ">
+                    <div class="card-body p-5 ">
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                                <h2 d-flex fw-bold mb-2 text-uppercase text-center>Sign Up</h2>
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-outline form-dark mb-2">
+                                    <label asp-for="Input.PhoneNumber"></label>
+                                    <input asp-for="Input.PhoneNumber" class="form-control form-control-sm" autocomplete="username" aria-required="true" />
+                                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                                </div>
+                                <div class="form-outline form-dark mb-2">
+                                    <label asp-for="Input.Name"></label>
+                                    <input asp-for="Input.Name" class="form-control form-control-sm" autocomplete="username" aria-required="true" />
+                                    <span asp-validation-for="Input.Name" class="text-danger"></span>
+                                </div>
+                                <div class="form-outline form-dark mb-2">
+                                    <label asp-for="Input.Password"></label>
+                                    <input asp-for="Input.Password" class="form-control form-control-sm" autocomplete="new-password" aria-required="true" />
+                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-outline form-dark mb-2">
+                                    <label asp-for="Input.ConfirmPassword"></label>
+                                    <input asp-for="Input.ConfirmPassword" class="form-control form-control-sm" autocomplete="new-password" aria-required="true" />
+                                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                                </div>
+                                <div class="button d-flex justify-content-center mb-4 ">
+                                    <button class="btn btn-outline-dark mt-4 px-5 " type="submit">Register</button>
+                                </div>
+                                <div class="button d-flex justify-content-center mb-4 ">
+                                    <input type=button class="btn btn-outline-dark m-2 px-5 " value="back" onclick='history.go(-1)'>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

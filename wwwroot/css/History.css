@@ -1,0 +1,21 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+.container {
+    max-width: 700px;
+    background-color: #FAF4F4;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+body {
+    background-color: #EDD5C3
+}
+tr {
+    white-space: nowrap;
+}
+td {
+    white-space: nowrap;
+}

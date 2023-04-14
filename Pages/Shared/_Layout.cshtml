@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Homepage</title>
+    <link rel="stylesheet" href="~/css/Index.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lux.css" />
+    <script src="https://kit.fontawesome.com/a473001205.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-xxl navbar-toggleable-lg navbar-light bg-white shadow p-3 mb-5 bg-body rounded">
+            <div class="container-fluid mb-2">
+                <div class="col-8 col-md-7 col-lg-8 ms-2">
+                    <a class="navbar-brand" href="~/">
+                        <img src="~/images/logo/Oh My Cup! (1).svg" alt="logo" height="60" width="60" />Oh My Cup!
+                    </a>
+                </div>
+                @*<div class="col 3 ">
+                <partial name="_LoginPartial" />
+                </div>*@
+
+                <div class="Nav-Toggle">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+
+                <div class="collapse navbar-collapse justify-content-end " id="navbarNav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <partial name="_LoginPartial" />
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/Userprofile">โปรไฟล์</a>
+
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/Dashboard">แดชบอร์ด</a>
+
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/History">ประวัติการสั่งซื้อ</a>
+
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/Account/Login">ล็อคอิน</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/Account/Register">สมัครสมาชิก</a>
+                            </li>
+                        </ul>
+                    }
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

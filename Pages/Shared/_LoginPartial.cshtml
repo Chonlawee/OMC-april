@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<div class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+  <div class="col-7 m-1">
+            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">สวัสดีคุณ @UserManager.GetUserAsync(User).Result.Name</a>
+  </div>
+    
+  <div class="col-5 m-1">
+        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Account/Login", new { area = "" })">
+            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">ออกจากระบบ</button>
+        </form>
+  </div>
+}
+else
+{
+  <div class="col-5 m-1">
+        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/l" asp-route-returnUrl="@Url.Page("/Account/Login", new { area = "" })">
+            <button id="login" type="submit" class="nav-link btn btn-link text-dark">Login</button>
+        </form>
+  </div>
+}
+</div>

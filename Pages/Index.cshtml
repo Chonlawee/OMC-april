@@ -1,0 +1,124 @@
+﻿@page
+@model IndexModel
+
+
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>หน้าหลัก</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lux.css" />
+    <link rel="stylesheet" href="~/css/Index.css" asp-append-version="true" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="d-flex flex-row align-items-center mb-4 " style="background-color: #FAF4F4;  border-radius: 12px;}">
+            <div class="d-flex justify-content-md-start m-3">
+                <i class="fa-solid fa-location-dot fa-3x"></i>
+            </div>
+            <div class="col-8" id="Location_Text">
+                <div class="d-flex flex-row mb-2">
+                    <a>
+                        ปทุมธานี
+                    </a>
+                </div>
+                <div class="d-flex flex-row mb-2">
+                    <a>
+                        9/1 หมู่ที่ 5 ถ. พหลโยธิน ตำบล คลองหนึ่ง อำเภอคลองหลวง
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        @*---------------------------------------------------------------------------------------------------------------------------------------*@
+        @*  Promotion box*@
+        <!-- Carousel -->
+        <div class="col-12">
+            <div id="Promotion" class="carousel slide d-flex p-3" data-bs-ride="carousel">
+                <!-- Indicators/dots -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#Promotion" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#Promotion" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#Promotion" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#Promotion" data-bs-slide-to="3"></button>
+
+                 
+                </div>
+
+                <!-- The slideshow/carousel -->
+                <div class="carousel-inner  " id="imgPromotion">
+                    <div class="carousel-item active">
+                        <img src="/images/Promotion picture/2.svg" class="d-block img-fluid m-auto" style="width: 100%;">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/images/Promotion picture/3.svg" class="d-block img-fluid m-auto" style="width: 100%;">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/images/Promotion picture/5.svg" class="d-block img-fluid m-auto" style="width: 100%;">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/images/Promotion picture/7.svg" class="d-block img-fluid m-auto" style="width: 100%;">
+                    </div>
+                 
+
+                </div>
+            </div>
+            <!-- Left and right controls/icons -->
+            @*----------------------------------------------------------------------------------------------------------------------------------------*@
+            @*Catagory box*@
+            <div class="Catagory">
+                <h1>หมวดหมู่</h1>
+                <div class="d-flex flex-md-nowrap flex-sm-wrap overflow-auto scrollbar-width-none justify-content-center justify-content-around my-3">
+                    <div class="me-2" id="category-1">
+                        @* set id = catagory-1 to easier custoimze in css*@
+                        <img src="/images/coffee._iconpng.png" class="img-fluid" />
+                    </div>
+                    <div class="me-2" id="category-2">
+                        <img src="/images/Tea_Icon.png" class="img-fluid" />
+                    </div>
+                    <div class="me-2" id="category-3">
+                        <img src="/images/Promotion Icon/Promotion_icon.svg" class="cocoa-img img-fluid" />
+                    </div>
+                </div>
+            </div>
+            @*-----------------------------------------------------------------------   ----------------------------------------------------------------*@
+            <div class="Product">
+                <h1>สินค้า</h1>
+                <div class="row m-1" id="productrow">
+                    @foreach (var item in Model.Product)
+                    {
+                        <div class="col-3" id="productborder">
+                            <div class="ImageProduct">
+                                <a asp-page="./OrderDetail" asp-route-id="@item.ProductID">
+                                    <img src="data:image/jpg;base64,@item.ProductImage" class="imagedrink m-auto">
+                                </a>
+                            </div>
+                            <div class="my-2 text-center">
+                                @item.ProductName
+                            </div>
+                            <div class="my-2 text-center">
+                                @item.ProductPrice <label>บาท</label>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+</body>
+
+
+</html>

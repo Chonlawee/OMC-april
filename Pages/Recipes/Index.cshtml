@@ -1,0 +1,79 @@
+﻿@page
+@model OMC.Pages.Recipes.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe[0].RecipeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe[0].Syrup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe[0].Milk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe[0].Water)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe[0].Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe[0].Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe[0].Modified)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe[0].Deleted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Recipe) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecipeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Syrup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Milk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Water)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deleted)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.RecipeID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.RecipeID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.RecipeID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

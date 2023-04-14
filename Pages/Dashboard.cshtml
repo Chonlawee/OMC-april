@@ -1,0 +1,111 @@
+﻿@page
+@model OMC.Pages.DashboardModel
+@{
+    
+    
+
+}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>หน้าหลัก</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lux.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/Dashboard.css" />
+</head>
+
+
+
+<body>
+
+    <div class=container>
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        หมายเลขสินค้า
+                    </th>
+                    <th>
+                       จำนวนแก้ว
+                    </th>
+
+                    <th>
+                       ราคา
+                    </th>
+                    <th>
+                        สถานะ
+                    </th>
+                    <th>
+                     ลำดับคิว
+                    </th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Order)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cup_Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Total)
+                        </td>
+                        <td class="order-status">
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QueuePosition)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <script>
+        setInterval(updateStatusText, 0); // Update status text every 5 seconds
+
+        function updateStatusText() {
+            var statusElements = document.querySelectorAll(".order-status");
+
+            // Loop through each status element and update the text
+            statusElements.forEach(element => {
+                var status = element.textContent.trim();
+                var translatedText = translateStatus(status);
+                if (translatedText !== "") {
+                    element.textContent = translatedText;
+                }
+            });
+        }
+
+        function translateStatus(status) {
+            switch (status) {
+                case "Done":
+                    return "เสร็จสิ้น";
+                case "Waiting":
+                    return "กำลังรอ";
+                case "OnProcess":
+                    return "กำลังทำ";
+                default:
+                    return "";
+            }
+        }
+    </script>
+
+</body>
+</html>

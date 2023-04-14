@@ -1,0 +1,143 @@
+﻿@page 
+@model OMC.Pages.waitingOrderModel
+@{
+    ViewData["Title"] = "WaitingOrder";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form </title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lux.css" />
+    <link rel="stylesheet" href="~/css/waitingorder.css" />
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-3 mb-5 h-100">
+        <div class="con">
+            <div class="row">
+                <div class="cup">
+                    <span class="steam"></span>
+                    <span class="steam"></span>
+                    <span class="steam"></span>
+                    <div class="cup-handle"></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="process my-4 d-flex justify-content-center">
+
+            <h1>กำลังทำเครื่องดื่ม</h1>
+        </div>
+      
+        <div class="main my-4 mt-2 d-flex justify-content-center">
+        
+        </div>
+        <h1>Current Queue: <span class="QueuePosition" data-order-id ="@Model.Order.OrderID">@Model.QueuePosition</span></h1>
+
+    </div>
+
+    @section scripts {
+        <script>
+            var connection = new signalR.HubConnectionBuilder().withUrl("/orderHub").build();
+            connection.on("NotifiUpdatePosition", function (orderId, QueuePosition) {
+                console.log(`Received UpdatePosition event for order ${orderId}. New queue position: ${QueuePosition}`);
+                // update queue position for all orders
+                document.querySelectorAll(".QueuePosition").forEach(function (element) {
+                    if (element.getAttribute("data-order-id") == orderId) {
+                        console.log(`Found element with order ID ${orderId} and class "QueuePosition".`);
+                        console.log(`Current queue position: ${element.innerText}`);
+                        // update the inner text of the element with the new queue position
+                        element.innerText = QueuePosition;
+                        console.log(`New queue position: ${element.innerText}`);
+
+                        console.log(`Queue position updated for order ${orderId}. New position: ${QueuePosition}`);
+                    }
+                    else {
+                        // log a message to the console when the condition is not met
+                        console.log(`Element not found with order ID ${orderId} and class "QueuePosition".`);
+                    }
+                });
+            });
+            connection.start().then(function () {
+                console.log("SignalR connection started. Connection ID: " + connection.connectionId);
+            }).catch(function (err) {
+                console.log("SignalR connection failed to start. Error: " + err);
+            });
+        </script>
+
+        <script>
+            function updateOrderStatusAutomatically(id, interval) {
+                setInterval(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/waitingorder?handler=UpdateOrderStatusAjax&id=" + id,
+                        headers: {
+                            RequestVerificationToken:
+                                $('input:hidden[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function () {
+                            console.log("Order status updated successfully.");
+                        },
+                        error: function () {
+                            console.error("Error updating order status.");
+                        }
+                    });
+                }, interval);
+            }
+        </script>
+        <script>
+            $(function () {
+                updateOrderStatusAutomatically(@Model.Order.OrderID, 10000); // Update the order status every 10 seconds
+            });
+        </script>
+
+        <script>
+            function OnPostUpdateOrderFromMqtt(currentOrderId, currentStatus, interval) {
+                setInterval(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/WaitingOrder?handler=UpdateOrderFromMqtt",
+                        data: {
+                            currentOrderId: currentOrderId,
+                            currentStatus: currentStatus
+                        },
+                        headers: {
+                            RequestVerificationToken:
+                                $('input:hidden[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function () {
+                            console.log("Order status From MQTT updated  successfully.");
+                        },
+                        error: function () {
+                            console.error("Error updating order status.");
+                        }
+                    });
+                }, interval);
+            }
+    </script>
+
+        <script>
+            $(function () {
+                var currentOrderId = @Html.Raw(Json.Serialize(HttpContext.Session.GetInt32("MqttOrderId")));
+                var currentStatus = @Html.Raw(Json.Serialize(HttpContext.Session.GetString("MqttOrderStatus")));
+                OnPostUpdateOrderFromMqtt(currentOrderId, currentStatus, 10000); // Update the order status every 10 seconds
+            });
+        </script>
+
+
+       
+
+
+
+        
+    }
+
+
+</body>
+</html>
